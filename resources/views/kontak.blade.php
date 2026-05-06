@@ -1,514 +1,593 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
-<title>Kontak | Vorent Malang</title>
+    <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>Kontak | Vorent Malang</title>
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
+/* ============================
+   GLOBAL STYLES
+   ============================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
 }
 
-body{
-line-height:1.7;
-color:#1f2937;
-background:#fff;
+body {
+    line-height: 1.7;
+    color: #1f2937;
+    background: #fafcff;
 }
 
-.container{
-width:90%;
-max-width:1200px;
-margin:auto;
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: auto;
 }
 
-nav{
-position:fixed;
-top:0;
-width:100%;
-background:#fff;
-box-shadow:0 2px 10px rgba(0,0,0,.06);
-z-index:1000;
+section {
+    padding: 90px 0;
 }
 
-.nav-wrapper{
-display:flex;
-justify-content:space-between;
-align-items:center;
-padding:20px 0;
+/* ============================
+   NAVBAR
+   ============================ */
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,.06);
+    z-index: 1000;
 }
 
-.logo img{
-height:45px;
-object-fit:contain;
+.nav-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
 }
 
-nav ul{
-display:flex;
-gap:30px;
-list-style:none;
+.logo img {
+    height: 45px;
+    object-fit: contain;
 }
 
-nav a{
-position:relative;
-text-decoration:none;
-color:#222;
-font-weight:500;
-padding-bottom:10px;
+nav ul {
+    display: flex;
+    gap: 30px;
+    list-style: none;
 }
 
-nav a.active{
-color:#1e56cd;
-font-weight:700;
+nav a {
+    position: relative;
+    text-decoration: none;
+    color: #222;
+    font-weight: 500;
+    padding-bottom: 10px;
+    transition: 0.3s;
 }
 
-nav a.active::after{
-content:'';
-position:absolute;
-left:0;
-bottom:0;
-width:100%;
-height:2px;
-background:#1e56cd;
+nav a:hover {
+    color: #1e56cd;
 }
 
-.hero{
-padding-top:150px;
-padding-bottom:90px;
-background:linear-gradient(to right,#eef4ff,#ffffff);
-text-align:center;
+nav a.active {
+    color: #1e56cd;
+    font-weight: 700;
 }
 
-.badge{
-display:inline-block;
-padding:10px 18px;
-border-radius:40px;
-background:#dfe9ff;
-color:#1e56cd;
-font-weight:600;
-margin-bottom:20px;
+nav a.active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: #1e56cd;
 }
 
-.hero h1{
-font-size:56px;
-margin-bottom:20px;
+/* ============================
+   HERO SECTION
+   ============================ */
+.hero {
+    padding-top: 160px;
+    padding-bottom: 100px;
+    background: linear-gradient(135deg, #eef4ff 0%, #ffffff 100%);
+    text-align: center;
 }
 
-.hero p{
-max-width:700px;
-margin:auto;
-font-size:20px;
-color:#555;
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 20px;
+    border-radius: 40px;
+    background: #dfe9ff;
+    color: #1e56cd;
+    font-weight: bold;
+    margin-bottom: 25px;
+    font-size: 15px;
 }
 
-section{
-padding:90px 0;
+.hero h1 {
+    font-size: 52px;
+    margin-bottom: 20px;
+    color: #111;
+    font-weight: bold;
 }
 
-.contact-wrapper{
-display:grid;
-grid-template-columns:1.2fr .8fr;
-gap:50px;
-align-items:start;
+.hero p {
+    max-width: 700px;
+    margin: auto;
+    font-size: 18px;
+    color: #555;
+    line-height: 1.8;
 }
 
-.form-card{
-background:white;
-padding:50px;
-border-radius:30px;
-box-shadow:0 12px 30px rgba(0,0,0,.07);
+/* ============================
+   CONTACT CARDS (HORIZONTAL)
+   ============================ */
+.contact-section {
+    padding: 60px 0 90px;
 }
 
-.form-card h2{
-font-size:40px;
-margin-bottom:15px;
+.contact-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    margin-top: -60px; /* Membuat kartu sedikit menabrak hero section */
 }
 
-.form-card p{
-color:#667085;
-margin-bottom:35px;
+.contact-card {
+    background: white;
+    padding: 40px 25px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    border: 1px solid #f0f4f8;
+    text-decoration: none;
+    color: #333;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
-.form-group{
-margin-bottom:25px;
+/* Efek hover khusus untuk link */
+a.contact-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(30, 86, 205, 0.1);
+    border-color: #d6ecff;
 }
 
-label{
-display:block;
-font-weight:600;
-margin-bottom:10px;
+.icon-box {
+    width: 75px;
+    height: 75px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    margin-bottom: 20px;
+    transition: 0.3s;
 }
 
-input,
-textarea{
-width:100%;
-padding:16px 18px;
-border:1px solid #d1d5db;
-border-radius:14px;
-font-size:16px;
-outline:none;
-transition:.3s;
+/* Warna unik untuk masing-masing platform */
+.icon-wa { background: #dcfce7; color: #16a34a; }
+.icon-ig { background: #fce7f3; color: #db2777; }
+.icon-tk { background: #eeeeee; color: #c0c0c0; }
+.icon-time { background: #e8f0ff; color: #1e56cd; }
+
+.contact-card h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #111;
 }
 
-input:focus,
-textarea:focus{
-border-color:#1e56cd;
-box-shadow:0 0 0 4px rgba(30,86,205,.08);
+.contact-card p {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.6;
 }
 
-textarea{
-height:150px;
-resize:none;
+.contact-action {
+    margin-top: 15px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #1e56cd;
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
-.btn{
-display:inline-block;
-padding:16px 30px;
-background:#1e56cd;
-color:white;
-border:none;
-border-radius:12px;
-font-weight:bold;
-cursor:pointer;
+/* ============================
+   FAQ SECTION
+   ============================ */
+.faq-section {
+    background: #ffffff;
+    padding: 90px 0;
 }
 
-.info-card{
-background:#f7faff;
-padding:45px;
-border-radius:30px;
+.sec-title {
+    text-align: center;
+    margin-bottom: 50px;
 }
 
-.info-card h2{
-font-size:38px;
-margin-bottom:30px;
+.sec-title h2 {
+    font-size: 40px;
+    color: #111;
+    font-weight: bold;
+    margin-bottom: 15px;
 }
 
-.contact-box{
-background:white;
-padding:25px;
-border-radius:18px;
-margin-bottom:20px;
-box-shadow:0 6px 18px rgba(0,0,0,.04);
+.sec-title h2::after {
+    content: '';
+    display: block;
+    width: 70px;
+    height: 4px;
+    background: #1e56cd;
+    margin: 15px auto 0;
+    border-radius: 2px;
 }
 
-.contact-box h3{
-margin-bottom:10px;
-color:#1e56cd;
+.sec-title p {
+    font-size: 18px;
+    color: #666;
 }
 
-.socials{
-display:flex;
-gap:15px;
-margin-top:30px;
-flex-wrap:wrap;
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
 }
 
-.social-btn{
-display:inline-block;
-padding:12px 20px;
-border:2px solid #1e56cd;
-color:#1e56cd;
-text-decoration:none;
-border-radius:12px;
-font-weight:600;
+.faq-box {
+    background: #f8fbff;
+    border: 1px solid #eef4ff;
+    border-radius: 16px;
+    margin-bottom: 15px;
+    transition: all 0.3s ease;
 }
 
-.map-box{
-margin-top:30px;
-background:white;
-padding:30px;
-border-radius:20px;
-box-shadow:0 6px 18px rgba(0,0,0,.04);
+.faq-box:hover {
+    border-color: #d6ecff;
 }
 
-.cta{
-margin-top:80px;
-background:#1e56cd;
-color:white;
-text-align:center;
-padding:90px 40px;
-border-radius:32px;
+.faq-question {
+    padding: 22px 25px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #111;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    list-style: none; /* Menghilangkan panah bawaan browser */
 }
 
-.cta h2{
-font-size:48px;
-margin-bottom:20px;
+.faq-question::-webkit-details-marker {
+    display: none;
 }
 
-.cta p{
-font-size:20px;
-margin-bottom:30px;
+.toggle-icon {
+    font-size: 24px;
+    color: #1e56cd;
+    transition: transform 0.3s ease;
 }
 
-.cta a{
-display:inline-block;
-padding:16px 30px;
-background:white;
-color:#1e56cd;
-text-decoration:none;
-border-radius:12px;
-font-weight:bold;
+/* Saat FAQ terbuka, ikon berputar 45 derajat (menjadi tanda silang) */
+.faq-box[open] .toggle-icon {
+    transform: rotate(45deg);
 }
 
-footer{
-margin-top:90px;
-background:#111827;
-color:white;
-padding:70px 0 30px;
+.faq-answer {
+    padding: 0 25px 25px;
+    color: #555;
+    font-size: 16px;
+    line-height: 1.8;
 }
 
-.footer-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:30px;
-margin-bottom:35px;
+/* ============================
+   FOOTER (Sesuai Code Lama)
+   ============================ */
+footer {
+    background: #111827;
+    color: white;
+    margin-top: 80px;
+    padding: 70px 0 30px;
 }
 
-.copy{
-text-align:center;
-opacity:.7;
+.footer-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr; /* Kolom kiri sedikit lebih lebar untuk deskripsi */
+    gap: 40px;
+    margin-bottom: 40px;
+    align-items: flex-start;
 }
 
+/* LOGO FOOTER */
+.footer-logo img {
+    height: 60px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.footer-logo p {
+    opacity: .7;
+    font-size: 15px;
+    line-height: 1.6;
+    max-width: 300px;
+}
+
+/* NAVIGASI FOOTER */
+.footer-nav h3, .footer-contact h3 {
+    margin-bottom: 20px;
+    font-size: 18px;
+    color: #fff;
+}
+
+.footer-nav a {
+    display: block; /* Membuat link tersusun ke bawah */
+    color: #d1d5db;
+    text-decoration: none;
+    margin-bottom: 12px;
+    transition: 0.3s ease;
+}
+
+.footer-nav a:hover {
+    color: #1e56cd;
+    padding-left: 5px; /* Efek hover simpel */
+}
+
+/* KONTAK FOOTER */
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 15px;
+    color: #d1d5db;
+}
+
+.contact-item iconify-icon {
+    font-size: 22px;
+    color: #1e56cd;
+    margin-top: 2px;
+}
+
+/* COPYRIGHT */
+.copy {
+    text-align: center;
+    opacity: .6;
+    font-size: 14px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1); /* Garis pemisah tipis */
+    padding-top: 25px;
+}
+
+/* ============================
+   RESPONSIVE (MOBILE)
+   ============================ */
 @media(max-width:950px){
+    nav ul {
+        display: none;
+    }
 
-.contact-wrapper,
-.footer-grid{
-grid-template-columns:1fr;
-}
+    .hero h1 {
+        font-size: 40px;
+    }
 
-nav ul{
-display:none;
-}
+    .contact-grid,
+    .footer-grid {
+        grid-template-columns: 1fr;
+    }
 
-.hero h1{
-font-size:42px;
-}
+    .contact-grid {
+        margin-top: 0;
+        gap: 20px;
+    }
 
-.form-card,
-.info-card{
-padding:35px;
-}
+    .footer-grid {
+        text-align: center;
+    }
+
+    .footer-logo img, 
+    .footer-logo p {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .contact-item {
+        justify-content: center;
+    }
 }
 </style>
 </head>
 <body>
 
+<!-- NAVBAR -->
 <nav>
-<div class="container nav-wrapper">
-
-<a href="/" class="logo">
-    <img src="storage/images/logo.jpeg" alt="Logo">
-</a>
-
-<ul>
-<li><a href="/" class="{{ request()->is('/') ? 'active' : '' }}">Beranda</a></li>
-<li><a href="/tentang" class="{{ request()->is('tentang') ? 'active' : '' }}">Tentang</a></li>
-<li><a href="/sewa-mobil" class="{{ request()->is('sewa-mobil*') ? 'active' : '' }}">Sewa Mobil</a></li>
-<li><a href="/kontak" class="{{ request()->is('kontak') ? 'active' : '' }}">Kontak</a></li>
-</ul>
-
-</div>
+    <div class="container nav-wrapper">
+        <a href="/" class="logo">
+            <img src="storage/images/logo.jpeg" alt="Logo">
+        </a>
+        <ul>
+            <li><a href="/" class="{{ request()->is('/') ? 'active' : '' }}">Beranda</a></li>
+            <li><a href="/tentang" class="{{ request()->is('tentang') ? 'active' : '' }}">Tentang</a></li>
+            <li><a href="/sewa-mobil" class="{{ request()->is('sewa-mobil*') ? 'active' : '' }}">Sewa Mobil</a></li>
+            <li><a href="/kontak" class="active">Kontak</a></li>
+        </ul>
+    </div>
 </nav>
 
-
-
+<!-- HERO SECTION -->
 <section class="hero">
-<div class="container">
-
-<span class="badge">
-Hubungi Kami
-</span>
-
-<h1>
-Kami Siap Membantu
-Kebutuhan Perjalanan Anda
-</h1>
-
-<p>
-Hubungi tim DER Rental Malang untuk pertanyaan,
-reservasi, maupun konsultasi armada.
-</p>
-
-</div>
+    <div class="container">
+        <span class="badge">
+            <iconify-icon icon="mdi:headset-mic"></iconify-icon> Pusat Layanan Bantuan
+        </span>
+        <h1>Hubungi Tim Vorent Malang</h1>
+        <p>Punya pertanyaan seputar layanan rental mobil kami? Jangan ragu untuk menghubungi kami melalui platform resmi di bawah ini.</p>
+    </div>
 </section>
 
+<!-- CONTACT CARDS (HORIZONTAL) -->
+<section class="contact-section">
+    <div class="container">
+        <div class="contact-grid">
+            
+            <!-- WhatsApp -->
+            <a href="https://wa.me/6281256341845" target="_blank" class="contact-card">
+                <div class="icon-box icon-wa">
+                    <iconify-icon icon="mdi:whatsapp"></iconify-icon>
+                </div>
+                <h3>WhatsApp</h3>
+                <p>Chat langsung dengan admin untuk respon tercepat.</p>
+                <div class="contact-action">
+                    Hubungi Sekarang <iconify-icon icon="mdi:arrow-right"></iconify-icon>
+                </div>
+            </a>
 
+            <!-- Instagram -->
+            <a href="https://instagram.com/vorent_malang" target="_blank" class="contact-card">
+                <div class="icon-box icon-ig">
+                    <iconify-icon icon="mdi:instagram"></iconify-icon>
+                </div>
+                <h3>Instagram</h3>
+                <p>Lihat update armada dan promo terbaru kami.</p>
+                <div class="contact-action">
+                    @vorent_malang <iconify-icon icon="mdi:arrow-right"></iconify-icon>
+                </div>
+            </a>
 
-<section>
-<div class="container">
+            <!-- TikTok -->
+            <a href="https://tiktok.com/@vorent_malang" target="_blank" class="contact-card">
+                <div class="icon-box icon-tk">
+                    <iconify-icon icon="logos:tiktok-icon"></iconify-icon>
+                </div>
+                <h3>TikTok</h3>
+                <p>Tonton video review kendaraan dan keseruan kami.</p>
+                <div class="contact-action">
+                    @vorent_malang <iconify-icon icon="mdi:arrow-right"></iconify-icon>
+                </div>
+            </a>
 
-<div class="contact-wrapper">
+            <!-- Jam Operasional (Bukan Link) -->
+            <div class="contact-card" style="cursor: default;">
+                <div class="icon-box icon-time">
+                    <iconify-icon icon="mdi:clock-outline"></iconify-icon>
+                </div>
+                <h3>Jam Operasional</h3>
+                <p style="font-weight: bold; color: #111;">Senin - Minggu</p>
+                <p>24 jam siap melayani Anda</p>
+            </div>
 
-<div class="form-card">
-
-<h2>Kirim Pesan</h2>
-
-<p>
-Isi form berikut dan tim kami akan segera merespons.
-</p>
-
-<form action="#" method="POST">
-
-<div class="form-group">
-<label>Nama Lengkap</label>
-<input 
-type="text"
-placeholder="Masukkan nama lengkap"
-required
->
-</div>
-
-
-<div class="form-group">
-<label>Email</label>
-<input 
-type="email"
-placeholder="Masukkan email"
-required
->
-</div>
-
-
-<div class="form-group">
-<label>Nomor HP / WhatsApp</label>
-<input 
-type="text"
-placeholder="08xxxxxxxxxx"
-required
->
-</div>
-
-
-<div class="form-group">
-<label>Pesan</label>
-<textarea
-placeholder="Tulis pesan atau kebutuhan rental..."
-required
-></textarea>
-</div>
-
-<button class="btn">
-Kirim Pesan
-</button>
-
-</form>
-
-</div>
-
-
-
-<div class="info-card">
-
-<h2>Informasi Kontak</h2>
-
-<div class="contact-box">
-<h3>WhatsApp Admin</h3>
-<p>+62 812 3456 7890</p>
-</div>
-
-<div class="contact-box">
-<h3>Email</h3>
-<p>admin@derrentalmalang.com</p>
-</div>
-
-<div class="contact-box">
-<h3>Instagram</h3>
-<p>@derrentalmalang</p>
-</div>
-
-<div class="contact-box">
-<h3>Alamat</h3>
-<p>Malang, Jawa Timur</p>
-</div>
-
-
-<div class="socials">
-
-<a href="https://wa.me/6281234567890"
-class="social-btn">
-WhatsApp
-</a>
-
-<a href="#"
-class="social-btn">
-Instagram
-</a>
-
-<a href="#"
-class="social-btn">
-Email
-</a>
-
-</div>
-
-
-<div class="map-box">
-<h3>Jam Operasional</h3>
-<br>
-<p>Senin - Minggu</p>
-<p>08.00 - 21.00 WIB</p>
-</div>
-
-</div>
-
-</div>
-
-
-
-<div class="cta">
-
-<h2>
-Butuh Booking Cepat?
-</h2>
-
-<p>
-Untuk reservasi langsung, hubungi admin melalui WhatsApp.
-</p>
-
-<a href="https://wa.me/6281234567890">
-Chat Admin
-</a>
-
-</div>
-
-</div>
+        </div>
+    </div>
 </section>
 
+<!-- FAQ SECTION -->
+<section class="faq-section">
+    <div class="container">
+        <div class="sec-title">
+            <h2>Pertanyaan Populer (FAQ)</h2>
+            <p>Temukan jawaban cepat untuk pertanyaan yang sering diajukan</p>
+        </div>
 
+        <div class="faq-container">
+            <!-- FAQ 1 -->
+            <details class="faq-box">
+                <summary class="faq-question">
+                    Apa saja syarat menyewa mobil lepas kunci?
+                    <iconify-icon icon="mdi:plus" class="toggle-icon"></iconify-icon>
+                </summary>
+                <div class="faq-answer">
+                    Syarat menyewa mobil lepas kunci cukup mudah. Anda hanya perlu menyiapkan dokumen identitas asli berupa E-KTP, SIM A yang masih aktif, dan satu identitas pendukung lainnya (seperti KK, NPWP, atau ID Card Perusahaan).
+                </div>
+            </details>
 
+            <!-- FAQ 2 -->
+            <details class="faq-box">
+                <summary class="faq-question">
+                    Apakah harga sewa sudah termasuk BBM dan Tol?
+                    <iconify-icon icon="mdi:plus" class="toggle-icon"></iconify-icon>
+                </summary>
+                <div class="faq-answer">
+                    Untuk layanan <strong>Sewa Lepas Kunci</strong>, harga belum termasuk BBM, Tol, dan parkir. Sedangkan untuk <strong>Sewa dengan Sopir (All In)</strong>, kami memiliki paket yang sudah mencakup biaya Sopir dan BBM. Biaya Tol dan parkir tetap menjadi tanggungan penyewa sesuai pemakaian.
+                </div>
+            </details>
+
+            <!-- FAQ 3 -->
+            <details class="faq-box">
+                <summary class="faq-question">
+                    Apakah melayani pengiriman mobil ke Bandara/Stasiun?
+                    <iconify-icon icon="mdi:plus" class="toggle-icon"></iconify-icon>
+                </summary>
+                <div class="faq-answer">
+                    Ya, tentu saja! Kami menyediakan layanan antar-jemput armada ke Bandara Abdul Rachman Saleh, Stasiun Malang Kota Baru, maupun alamat hotel tempat Anda menginap. (Syarat & ketentuan jarak berlaku).
+                </div>
+            </details>
+
+            <!-- FAQ 4 -->
+            <details class="faq-box">
+                <summary class="faq-question">
+                    Bagaimana prosedur pembatalan pemesanan?
+                    <iconify-icon icon="mdi:plus" class="toggle-icon"></iconify-icon>
+                </summary>
+                <div class="faq-answer">
+                    Pembatalan maksimal dilakukan H-1 sebelum hari keberangkatan. Jika pembatalan dilakukan secara mendadak pada hari H, DP (Down Payment) yang sudah masuk akan dianggap hangus. Silakan hubungi admin kami untuk informasi lebih detail.
+                </div>
+            </details>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
 <footer>
 
-<div class="container">
+<div class="container footer-grid">
 
-<div class="footer-grid">
-
-<div>
-<h3>DER Rental Malang</h3>
-<p>Rental mobil profesional area Jawa Timur.</p>
+<!-- KIRI (LOGO) -->
+<div class="footer-logo">
+<img src="storage/images/logoputih.png" alt="Logo Vorent">
+<p>Rental mobil terpercaya untuk perjalanan aman dan nyaman. Siap menemani setiap momen spesialmu.</p>
 </div>
 
-<div>
-<h3>Layanan</h3>
-<p>Rental Harian</p>
-<p>Dengan Sopir</p>
-<p>Corporate Travel</p>
+<!-- TENGAH (NAVIGASI) -->
+<div class="footer-nav">
+<h3>Navigasi</h3>
+
+<a href="/">Beranda</a>
+<a href="/tentang">Tentang</a>
+<a href="/sewa-mobil">Sewa Mobil</a>
+<a href="/kontak">Kontak</a>
 </div>
 
-<div>
+<!-- KANAN (KONTAK) -->
+<div class="footer-contact">
 <h3>Kontak</h3>
-<p>0812-3456-7890</p>
-<p>Malang, Jawa Timur</p>
+
+<div class="contact-item">
+<iconify-icon icon="mdi:phone"></iconify-icon>
+<span>0812-5634-1845</span>
+</div>
+
+<div class="contact-item">
+<iconify-icon icon="mdi:map-marker"></iconify-icon>
+<span>JL. Simpang Dirgantara V B6/12, Malang</span>
+</div>
+
 </div>
 
 </div>
 
 <div class="copy">
-Copyright © 2026 DER Rental Malang
-</div>
-
+Copyright &copy; 2026 Vorent Malang. All rights reserved.
 </div>
 
 </footer>
