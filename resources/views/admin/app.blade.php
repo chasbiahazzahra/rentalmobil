@@ -181,6 +181,43 @@
         .btn-primary:hover {
             background: #0d368b;
         }
+
+        /* TOMBOL HAMBURGER (Sembunyi di PC, Muncul di HP) */
+        .hamburger {
+            display: none;
+            font-size: 28px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #111;
+        }
+
+        /* MANTRA RESPONSIF UNTUK HP (Layar di bawah 768px) */
+        @media (max-width: 768px) {
+            .sidebar {
+                left: -280px; /* Sembunyikan sidebar ke luar layar kiri */
+                z-index: 999;
+                transition: left 0.3s ease;
+            }
+            .sidebar.muncul {
+                left: 0; /* Munculkan saat class 'muncul' aktif */
+            }
+            .main-wrapper {
+                margin-left: 0;
+                width: 100%;
+                padding: 15px;
+            }
+            .top-header {
+                padding: 15px;
+            }
+            .hamburger {
+                display: block !important; /* Munculkan tombol di HP */
+            }
+            .admin-profile span {
+                display: none; /* Sembunyikan teks "Halo Admin" di HP biar tidak sempit */
+            }
+        }
+
     </style>
 </head>
 <body>
@@ -209,7 +246,12 @@
     <!-- MAIN KONTEN -->
     <div class="main-wrapper">
         <header class="top-header">
-            <h1>@yield('title')</h1>
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <button class="hamburger" onclick="toggleSidebar()">
+                    <iconify-icon icon="mdi:menu"></iconify-icon>
+                </button>
+                <h1>@yield('title')</h1>
+            </div>
             
             <div class="header-right">
                 <div class="admin-profile">
@@ -231,6 +273,12 @@
             @yield('content')
         </main>
     </div>
+
+    <script>
+        function toggleSidebar() {
+            document.querySelector('.sidebar').classList.toggle('muncul');
+        }
+    </script>
 
 </body>
 </html>

@@ -676,7 +676,7 @@ footer {
             <iconify-icon icon="mdi:car-multiple" style="font-size:18px;"></iconify-icon> Katalog Armada Premium
         </span>
         <h1>Pilih Mobil Sesuai Kebutuhan Perjalanan</h1>
-        <p>Tersedia layanan rental lepas kunci maupun *All-In* dengan sopir profesional untuk memberikan kenyamanan maksimal di setiap perjalanan Anda.</p>
+        <p>Tersedia layanan rental lepas kunci maupun dengan sopir profesional untuk memberikan kenyamanan maksimal di setiap perjalanan Anda.</p>
     </div>
 </section>
 
@@ -744,9 +744,15 @@ footer {
                         <div class="dropdown-body">
                             <ul>
                                 <li>
-                                    <span>Lepas Kunci</span> 
-                                    <strong class="price-highlight" style="color:#1e56cd;">Rp{{ number_format($product->harga_lepas_kunci,0,',','.') }}</strong>
-                                </li>
+    <span>Lepas Kunci</span>
+    
+    <!-- Cek apakah harga lepas kunci 0 atau kosong -->
+    @if($product->harga_lepas_kunci == 0 || is_null($product->harga_lepas_kunci))
+        <strong style="color: #ef4444; font-size: 14px; font-weight: 600;">Tidak Tersedia</strong>
+    @else
+        <strong class="price-highlight">Rp{{ number_format($product->harga_lepas_kunci, 0, ',', '.') }}</strong>
+    @endif
+</li>
                                 <li>
                                     <span>Dengan Sopir</span> 
                                     <strong class="price-highlight">Mulai Rp{{ number_format($product->harga_sopir,0,',','.') }}</strong>

@@ -60,6 +60,8 @@ nav a {
     padding-bottom: 10px;
 }
 
+nav a:hover { color: #1e56cd; }
+
 nav a.active {
     color: #1e56cd;
     font-weight: 700;
@@ -357,6 +359,168 @@ section {
     transform: translateX(8px); /* Efek geser ke kanan sedikit */
 }
 
+/* ============================
+   FLEET SECTION (ARMADA UNGGULAN)
+   ============================ */
+.fleet {
+    padding: 100px 0;
+    background-color: #f8fafc; /* Latar belakang abu-abu sangat muda agar card menonjol */
+}
+
+.fleet .title {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.fleet .title h2 {
+    font-size: 38px;
+    font-weight: bold;
+    color: #1e293b;
+    margin-bottom: 12px;
+}
+
+.fleet .title p {
+    font-size: 18px;
+    color: #64748b;
+}
+
+.fleet-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+
+.fleet-card {
+    background: #ffffff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
+    border: 1px solid #e2e8f0;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.fleet-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 35px rgba(30, 86, 205, 0.1);
+    border-color: #bfdbfe;
+}
+
+/* Badge Status */
+.fleet-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    padding: 6px 14px;
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(4px);
+    border-radius: 30px;
+    font-size: 12px;
+    font-weight: bold;
+    z-index: 10;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+.fleet-badge.tersedia { color: #16a34a; border: 1px solid #bbf7d0; }
+.fleet-badge.tidak-tersedia { color: #dc2626; border: 1px solid #fecaca; }
+
+.fleet-img {
+    height: 220px;
+    background: #ffffff;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.fleet-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.5s ease;
+}
+
+.fleet-card:hover .fleet-img img {
+    transform: scale(1.05); /* Efek zoom halus saat di-hover */
+}
+
+.fleet-content {
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.fleet-content h3 {
+    font-size: 22px;
+    color: #0f172a;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+/* Fitur Ikon */
+.fleet-features {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px dashed #e2e8f0;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    color: #64748b;
+}
+
+.feature-item iconify-icon {
+    font-size: 18px;
+    color: #64748b;
+}
+
+/* Harga & Tombol */
+.fleet-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+
+.fleet-price {
+    display: flex;
+    flex-direction: column;
+}
+
+.fleet-price span {
+    font-size: 12px;
+    color: #94a3b8;
+}
+
+.fleet-price strong {
+    font-size: 20px;
+    color: #1e56cd;
+    font-weight: bold;
+}
+
+.btn-detail {
+    background: #1e56cd;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.btn-detail:hover {
+    background: #0f172a;
+}
+
 /* Kotak icon */
 .service-icon {
     background: #1e56cd;
@@ -627,7 +791,7 @@ untuk perjalanan pribadi, keluarga, dan wisata.
 Lihat Armada
 </a>
 
-<a href="https://wa.me/6281256341845"
+<a href="https://wa.me/6281256341845" target="_blank"
 class="btn btn-outline">
 Hubungi Admin
 </a>
@@ -653,7 +817,7 @@ Hubungi Admin
 </div>
 
 <div>
-<img src="https://www.kayanaprimawisata.co.id/storage/2026/01/Sewa-Mobil-Malang-Lebaran-Tahun-Termurah.jpg" alt="Sewa Mobil">
+<img src="storage/images/banner-home-2.png" alt="Sewa Mobil">
 </div>
 
 </div>
@@ -712,71 +876,69 @@ Hubungi Admin
 
 
 <section class="fleet">
-<div class="container">
+    <div class="container">
+        <div class="title">
+            <h2>Armada Unggulan</h2>
+            <p>Pilih mobil sesuai kebutuhan perjalanan Anda.</p>
+        </div>
 
-<div class="title">
-<h2>Armada Unggulan</h2>
-<p>Pilih mobil sesuai kebutuhan perjalanan.</p>
-</div>
+        <div class="fleet-grid">
+            <!-- Ambil 3 data armada terbaru dari database -->
+            @forelse($products->take(3) as $product)
+            <div class="fleet-card">
+                
+                <!-- Badge Status Dinamis -->
+                <div class="fleet-badge {{ $product->status == 'tersedia' ? 'tersedia' : 'tidak-tersedia' }}">
+                    <iconify-icon icon="mdi:circle-medium"></iconify-icon> 
+                    {{ ucfirst($product->status) }}
+                </div>
 
-<div class="car-grid">
+                <div class="fleet-img">
+                    @if($product->gambar)
+                        <img src="{{ asset('storage/' . $product->gambar) }}" alt="{{ $product->nama_produk }}">
+                    @else
+                        <iconify-icon icon="mdi:car-off" style="font-size: 50px; color: #cbd5e1;"></iconify-icon>
+                    @endif
+                </div>
 
-<div class="car-card">
-<div class="car-img">Avanza</div>
+                <div class="fleet-content">
+                    <h3>{{ $product->nama_produk }}</h3>
+                    
+                    <div class="fleet-features">
+                        <div class="feature-item">
+                            <iconify-icon icon="mdi:user"></iconify-icon>
+                            {{ $product->kapasitas }}
+                        </div>
+                        <div class="feature-item">
+                            <iconify-icon icon="mdi:gas-station"></iconify-icon>
+                            {{ $product->bbm }}
+                        </div>
+                    </div>
 
-<div class="car-content">
-<h3>Innova Cumi 2KD</h3>
-<p>4-7 Seat • Pertalite</p>
+                    <div class="fleet-footer">
+                        <div class="fleet-price">
+                            <span>Mulai dari</span>
+                            <strong>
+                                <!-- Logika Cerdas: Tampilkan harga lepas kunci, tapi kalau 0 (seperti Hiace), tampilkan harga dengan sopir -->
+                                Rp{{ number_format($product->harga_lepas_kunci > 0 ? $product->harga_lepas_kunci : $product->harga_sopir, 0, ',', '.') }}
+                                <span style="font-size: 12px; color: #94a3b8; font-weight: normal;">/hari</span>
+                            </strong>
+                        </div>
 
-<div class="price">
-Rp400.000
-</div>
-
-<a href="/sewa-mobil" class="btn btn-primary">
-Detail
+                        <!-- Mengarahkan langsung ke WhatsApp Admin -->
+<a href="https://wa.me/6281256341845?text=Halo%20Admin,%20saya%20tertarik%20menyewa%20armada%20{{ urlencode($product->nama_produk) }}" target="_blank" class="btn-detail" style="display: flex; align-items: center; gap: 6px; justify-content: center;">
+    <iconify-icon icon="mdi:whatsapp" style="font-size: 18px;"></iconify-icon> Booking WA
 </a>
-</div>
-</div>
-
-
-<div class="car-card">
-<div class="car-img">Innova</div>
-
-<div class="car-content">
-<h3>Innova Reborn</h3>
-<p>Family Premium Car</p>
-
-<div class="price">
-Rp650.000
-</div>
-
-<a href="/sewa-mobil" class="btn btn-primary">
-Detail
-</a>
-</div>
-</div>
-
-
-<div class="car-card">
-<div class="car-img">Hiace</div>
-
-<div class="car-content">
-<h3>Innova Reborn Cumi</h3>
-<p>Travel Group</p>
-
-<div class="price">
-Rp1.200.000
-</div>
-
-<a href="/sewa-mobil" class="btn btn-primary">
-Detail
-</a>
-</div>
-</div>
-
-</div>
-
-</div>
+                    </div>
+                </div>
+            </div>
+            @empty
+            <div style="grid-column: 1 / -1; text-align: center; color: #94a3b8; padding: 40px;">
+                Belum ada data armada unggulan yang ditambahkan.
+            </div>
+            @endforelse
+        </div>
+    </div>
 </section>
 
 
@@ -852,7 +1014,7 @@ Detail
             Jangan tunda perjalanan Anda. Hubungi admin kami sekarang untuk mendapatkan penawaran terbaik dan pilih armada yang paling sesuai.
         </p>
         
-        <a href="https://wa.me/6281256341845" class="btn-wa">
+        <a href="https://wa.me/6281256341845" target="_blank" class="btn-wa">
             <iconify-icon icon="mdi:whatsapp"></iconify-icon> Booking via WhatsApp
         </a>
     </div>

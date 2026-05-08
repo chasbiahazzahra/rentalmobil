@@ -74,9 +74,9 @@ nav a {
     transition: 0.3s;
 }
 
-/* nav a:hover {
+nav a:hover {
     color: #1e56cd;
-} */
+}
 
 nav a.active {
     color: #1e56cd;
@@ -623,7 +623,7 @@ footer {
         </div>
         <div>
             <!-- Gambar Hero, gunakan URL gambar mobil yang bagus dari folder storage kamu -->
-            <img src="https://www.kayanaprimawisata.co.id/storage/2026/01/Sewa-Mobil-Malang-Lebaran-Tahun-Termurah.jpg" alt="Armada DER Rental">
+            <img src="storage/images/banner-tentang-hero.png" alt="Armada DER Rental">
         </div>
     </div>
 </section>
@@ -759,7 +759,7 @@ footer {
         </div>
 
         <div>
-            <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Mengapa Memilih Kami" class="why-img">
+            <img src="storage/images/banner-tentang.png" alt="Mengapa Memilih Kami" class="why-img">
         </div>
     </div>
 </section>

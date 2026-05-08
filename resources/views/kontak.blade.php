@@ -507,7 +507,7 @@ footer {
                     <iconify-icon icon="mdi:plus" class="toggle-icon"></iconify-icon>
                 </summary>
                 <div class="faq-answer">
-                    Syarat menyewa mobil lepas kunci cukup mudah. Anda hanya perlu menyiapkan dokumen identitas asli berupa E-KTP, SIM A yang masih aktif, dan satu identitas pendukung lainnya (seperti KK, NPWP, atau ID Card Perusahaan).
+                    Syarat menyesuaikan kategori penyewa: mahasiswa (KTP, KTM, dan jaminan motor + STNK), domisili Malang (KTP, KK, dan jaminan motor + STNK), serta wisatawan (KTP, SIM C, deposit Rp3.000.000, dan tiket perjalanan PP).
                 </div>
             </details>
 
@@ -518,7 +518,7 @@ footer {
                     <iconify-icon icon="mdi:plus" class="toggle-icon"></iconify-icon>
                 </summary>
                 <div class="faq-answer">
-                    Untuk layanan <strong>Sewa Lepas Kunci</strong>, harga belum termasuk BBM, Tol, dan parkir. Sedangkan untuk <strong>Sewa dengan Sopir (All In)</strong>, kami memiliki paket yang sudah mencakup biaya Sopir dan BBM. Biaya Tol dan parkir tetap menjadi tanggungan penyewa sesuai pemakaian.
+                    Untuk layanan <strong>Sewa Lepas Kunci</strong>, harga belum termasuk BBM, Tol, dan parkir. Sedangkan untuk <strong>Sewa dengan Sopir</strong>, harga sudah mencakup biaya Sopir, Tol, serta parkir Bandara. Biaya parkir lainnya tetap menyesuaikan dengan penggunaan selama perjalanan.
                 </div>
             </details>
 
@@ -529,7 +529,7 @@ footer {
                     <iconify-icon icon="mdi:plus" class="toggle-icon"></iconify-icon>
                 </summary>
                 <div class="faq-answer">
-                    Ya, tentu saja! Kami menyediakan layanan antar-jemput armada ke Bandara Abdul Rachman Saleh, Stasiun Malang Kota Baru, maupun alamat hotel tempat Anda menginap. (Syarat & ketentuan jarak berlaku).
+                    Ya, tentu saja! Kami menyediakan layanan antar-jemput armada ke Bandara Abdul Rachman Saleh, Stasiun Malang Kota Baru, maupun alamat hotel tempat Anda menginap. (Syarat dan ketentuan jarak berlaku).
                 </div>
             </details>
 
@@ -540,7 +540,7 @@ footer {
                     <iconify-icon icon="mdi:plus" class="toggle-icon"></iconify-icon>
                 </summary>
                 <div class="faq-answer">
-                    Pembatalan maksimal dilakukan H-1 sebelum hari keberangkatan. Jika pembatalan dilakukan secara mendadak pada hari H, DP (Down Payment) yang sudah masuk akan dianggap hangus. Silakan hubungi admin kami untuk informasi lebih detail.
+                    Pembatalan maksimal dilakukan H-3 sebelum hari keberangkatan. Jika pembatalan dilakukan melewati batas waktu tersebut atau secara mendadak pada hari H, DP (Down Payment) yang sudah masuk akan dianggap hangus. Silakan hubungi admin kami untuk informasi lebih detail.
                 </div>
             </details>
         </div>

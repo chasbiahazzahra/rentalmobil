@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Product;
 
 // Import Controller untuk pengunjung (Frontend)
 use App\Http\Controllers\ProductController as FrontendProductController;
@@ -16,7 +17,17 @@ use App\Http\Controllers\Admin\ProductController as AdminProductController;
 */
 
 Route::get('/', function () {
-    return view('home');
+    // 1. Tentukan nama mobil secara spesifik (pastikan ejaannya SAMA PERSIS dengan yang ada di database)
+    $mobilUnggulan = [
+        'Innova Reborn', 
+        'Innova Reborn Cumi', 
+        'Innova Cumi 2KD'
+    ];
+
+    // 2. Ambil data dari database HANYA yang namanya ada di daftar $mobilUnggulan
+    $products = \App\Models\Product::whereIn('nama_produk', $mobilUnggulan)->get(); 
+    
+    return view('home', compact('products'));
 });
 
 Route::get('/tentang', function () {
