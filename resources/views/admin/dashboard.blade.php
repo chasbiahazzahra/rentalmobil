@@ -1,10 +1,5 @@
-<!-- Mengambil template dari file app.blade.php -->
 @extends('admin.app')
-
-<!-- Mengisi bagian @yield('title') di app.blade.php -->
 @section('title', 'Dashboard Overview')
-
-<!-- Mengisi bagian @yield('content') di app.blade.php -->
 @section('content')
 
 <style>
@@ -34,25 +29,8 @@
     }
 
     /* Elemen Dekorasi di Background Welcome Card */
-    .shape-1 {
-        position: absolute;
-        width: 200px;
-        height: 200px;
-        background: rgba(255,255,255,0.05);
-        border-radius: 50%;
-        top: -50px;
-        right: -20px;
-    }
-    
-    .shape-2 {
-        position: absolute;
-        width: 150px;
-        height: 150px;
-        background: rgba(255,255,255,0.05);
-        border-radius: 50%;
-        bottom: -40px;
-        right: 120px;
-    }
+    .shape-1 { position: absolute; width: 200px; height: 200px; background: rgba(255,255,255,0.05); border-radius: 50%; top: -50px; right: -20px; }
+    .shape-2 { position: absolute; width: 150px; height: 150px; background: rgba(255,255,255,0.05); border-radius: 50%; bottom: -40px; right: 120px; }
 
     /* Statistik Cards */
     .stats-grid {
@@ -77,43 +55,35 @@
         box-shadow: 0 10px 25px rgba(0,0,0,0.06);
     }
 
-    .stat-icon {
-        width: 70px;
-        height: 70px;
-        border-radius: 16px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 36px;
-    }
-
+    .stat-icon { width: 70px; height: 70px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 36px; }
     .icon-blue { background: #e8f0ff; color: #1e56cd; }
     .icon-green { background: #d1fae5; color: #059669; }
     .icon-orange { background: #fef3c7; color: #d97706; }
 
-    .stat-info h3 {
-        font-size: 15px;
-        color: #6b7280;
-        margin-bottom: 5px;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
+    .stat-info h3 { font-size: 15px; color: #6b7280; margin-bottom: 5px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .stat-info h2 { font-size: 32px; color: #111; margin: 0; }
 
-    .stat-info h2 {
-        font-size: 32px;
-        color: #111;
+    /* --- MANTRA RESPONSIF UNTUK LAYAR HP --- */
+    @media (max-width: 768px) {
+        .stats-grid {
+            grid-template-columns: 1fr; /* Kartu jadi berbaris ke bawah, bukan ke samping */
+        }
+        .welcome-card {
+            padding: 25px; /* Mengurangi ruang kosong agar pas di layar kecil */
+        }
+        .welcome-card h2 {
+            font-size: 24px;
+        }
     }
 </style>
 
-<!-- Kartu Selamat Datang -->
 <div class="welcome-card">
     <div class="shape-1"></div>
     <div class="shape-2"></div>
     <h2>Selamat Datang, Admin!</h2>
-    <p>Ini adalah halaman utama dashboard Anda. Pantau dan kelola data armada mobil Vorent dari sini.</p>
+    <p>Pantau dan kelola data armada mobil Vorent dari sini.</p>
 </div>
 
-<!-- Kartu Ringkasan (Data Dummy Sementara) -->
 <div class="stats-grid">
     <div class="stat-card">
         <div class="stat-icon icon-blue">
@@ -121,7 +91,7 @@
         </div>
         <div class="stat-info">
             <h3>Total Armada</h3>
-            <h2>12</h2> <!-- Nanti angkanya bisa dibuat dinamis mengambil dari database -->
+            <h2>{{ $totalArmada }}</h2>
         </div>
     </div>
 
@@ -131,7 +101,7 @@
         </div>
         <div class="stat-info">
             <h3>Unit Tersedia</h3>
-            <h2>8</h2>
+            <h2>{{ $armadaTersedia }}</h2>
         </div>
     </div>
 
@@ -141,7 +111,7 @@
         </div>
         <div class="stat-info">
             <h3>Sedang Disewa</h3>
-            <h2>4</h2>
+            <h2>{{ $armadaDisewa }}</h2>
         </div>
     </div>
 </div>

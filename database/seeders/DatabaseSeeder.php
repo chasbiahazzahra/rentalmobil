@@ -2,24 +2,22 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash; // Wajib dipanggil untuk mengacak password
 
 class DatabaseSeeder extends Seeder
 {
-    use WithoutModelEvents;
-
     /**
      * Seed the application's database.
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+        // Membuat 1 akun Admin Utama untuk Vorent
+        User::create([
+            'name' => 'Admin Vorent',
+            'email' => 'admin@vorent.com',
+            'password' => Hash::make('admin123'), // Password ini akan otomatis diacak oleh sistem
         ]);
     }
 }

@@ -21,6 +21,7 @@ body {
     line-height: 1.6;
     color: #333;
     background-color: #fafcff;
+    overflow-x: hidden; /* MENCEGAH LAYAR BOCOR KE SAMPING */
 }
 
 .container {
@@ -29,14 +30,8 @@ body {
     margin: auto;
 }
 
-section {
-    padding: 90px 0;
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-}
+section { padding: 90px 0; }
+img { max-width: 100%; height: auto; }
 
 nav {
     position: fixed;
@@ -59,10 +54,21 @@ nav {
     object-fit: contain;
 }
 
+/* Tombol Hamburger - Sembunyi di PC */
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 35px;
+    color: #1e56cd;
+    cursor: pointer;
+}
+
 nav ul {
     display: flex;
     gap: 30px;
     list-style: none;
+    transition: left 0.4s ease; /* Transisi animasi untuk HP */
 }
 
 nav a {
@@ -74,9 +80,7 @@ nav a {
     transition: 0.3s;
 }
 
-nav a:hover {
-    color: #1e56cd;
-}
+nav a:hover { color: #1e56cd; }
 
 nav a.active {
     color: #1e56cd;
@@ -545,9 +549,10 @@ footer {
 }
 
 /* ============================
-   RESPONSIVE (MOBILE)
+   RESPONSIVE (MOBILE) - FIXED
    ============================ */
 @media(max-width: 900px) {
+    /* Merapikan semua elemen yang berpotensi bocor */
     .about-hero-grid, 
     .vm-grid, 
     .values-grid, 
@@ -555,44 +560,40 @@ footer {
     .why-grid, 
     .testi-grid, 
     .footer-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Memaksa 1 kolom vertikal */
         gap: 40px;
     }
 
+    /* Penyesuaian Ukuran Font & Jarak */
+    .about-hero h1 { font-size: 40px; }
+    .about-hero { padding-top: 120px; text-align: center; }
+    .stats-container { padding: 40px 20px; }
+    .why-img { order: -1; } /* Gambar pindah ke atas di HP */
+
+    /* Penyesuaian Footer */
+    .footer-grid { text-align: center; }
+    .footer-logo img, .footer-logo p { margin-left: auto; margin-right: auto; }
+    .contact-item { justify-content: center; }
+
+    /* Memunculkan Tombol Hamburger */
+    .hamburger { display: block; }
+
+    /* Merubah Menu Desktop jadi Menu Mobile Absolute */
     nav ul {
-        display: none;
-    }
-
-    .about-hero h1 {
-        font-size: 40px;
-    }
-
-    .about-hero {
-        padding-top: 120px;
+        flex-direction: column;
+        position: absolute;
+        top: 85px; /* Posisikan tepat di bawah navbar */
+        left: -100%; /* Sembunyikan di luar layar */
+        width: 100%;
+        background: #ffffff;
         text-align: center;
+        padding: 20px 0;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        gap: 20px;
     }
 
-    .stats-container {
-        padding: 40px 20px;
-    }
-
-    .why-img {
-        order: -1;
-    }
-
-    .footer-grid {
-        text-align: center;
-    }
-
-    .footer-logo img, 
-    .footer-logo p {
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .contact-item {
-        justify-content: center;
-    }
+    /* Class ini dipanggil JS saat tombol diklik */
+    nav ul.tampil { left: 0; }
 }
 </style>
 </head>
@@ -604,7 +605,12 @@ footer {
         <a href="/" class="logo">
             <img src="storage/images/logo.jpeg" alt="Logo">
         </a>
-        <ul>
+
+        <button class="hamburger" id="hamburger-btn">
+            <iconify-icon icon="mdi:menu"></iconify-icon>
+        </button>
+
+        <ul id="nav-menu">
             <li><a href="/" class="{{ request()->is('/') ? 'active' : '' }}">Beranda</a></li>
             <li><a href="/tentang" class="active">Tentang</a></li>
             <li><a href="/sewa-mobil" class="{{ request()->is('sewa-mobil*') ? 'active' : '' }}">Sewa Mobil</a></li>
@@ -854,6 +860,26 @@ footer {
         Copyright &copy; 2026 Vorent Malang. All rights reserved.
     </div>
 </footer>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburgerBtn.addEventListener('click', function() {
+            // Toggle menu masuk/keluar layar
+            navMenu.classList.toggle('tampil');
+            
+            // Ubah ikon garis 3 jadi ikon X saat diklik
+            const icon = this.querySelector('iconify-icon');
+            if (icon.getAttribute('icon') === 'mdi:menu') {
+                icon.setAttribute('icon', 'mdi:close');
+            } else {
+                icon.setAttribute('icon', 'mdi:menu');
+            }
+        });
+    });
+</script>
 
 </body>
 </html>

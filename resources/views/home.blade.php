@@ -7,6 +7,9 @@
     <title>Vorent Malang</title>
 
 <style>
+/* ============================
+   GLOBAL RESET
+   ============================ */
 * {
     margin: 0;
     padding: 0;
@@ -17,6 +20,7 @@
 body {
     line-height: 1.6;
     color: #222;
+    overflow-x: hidden; /* MENCEGAH LAYAR BOCOR KE SAMPING */
 }
 
 .container {
@@ -25,6 +29,9 @@ body {
     margin: auto;
 }
 
+/* ============================
+   NAVBAR & HAMBURGER
+   ============================ */
 nav {
     position: fixed;
     top: 0;
@@ -46,10 +53,21 @@ nav {
     object-fit: contain;
 }
 
+/* Tombol Hamburger - Sembunyi di PC */
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 35px;
+    color: #1e56cd;
+    cursor: pointer;
+}
+
 nav ul {
     display: flex;
     gap: 30px;
     list-style: none;
+    transition: left 0.4s ease; /* Transisi animasi untuk HP */
 }
 
 nav a {
@@ -720,41 +738,55 @@ footer {
 
 
 /* ============================
-   RESPONSIVE (MOBILE)
+   RESPONSIVE (MOBILE) - FIXED
    ============================ */
 @media(max-width: 900px) {
+    /* Merapikan semua elemen yang berpotensi bocor */
     .hero-grid,
     .features,
     .car-grid,
-    .about {
-        grid-template-columns: 1fr;
-    }
-
-    nav ul {
-        display: none;
-    }
-
-    .hero h1 {
-        font-size: 42px;
-    }
-
-    /* Penyesuaian Footer di Mobile */
+    .about,
+    .stats,
+    .fleet-grid,
     .footer-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Memaksa 1 kolom vertikal */
+    }
+
+    /* Penyesuaian Ukuran Font */
+    .hero h1 { font-size: 42px; }
+    .cta { padding: 60px 25px; }
+    .cta-content h2 { font-size: 32px; }
+    .cta-content p { font-size: 16px; }
+    .btn-wa { width: 100%; justify-content: center; }
+
+    /* Penyesuaian Footer */
+    .footer-grid { text-align: center; gap: 30px; }
+    .footer-logo img { margin: 0 auto 15px; }
+    .footer-logo p { margin: 0 auto; }
+    .contact-item { justify-content: center; }
+
+    /* Memunculkan Tombol Hamburger */
+    .hamburger {
+        display: block; 
+    }
+
+    /* Merubah Menu Desktop jadi Menu Mobile Absolute */
+    nav ul {
+        flex-direction: column;
+        position: absolute;
+        top: 85px; /* Posisikan tepat di bawah navbar */
+        left: -100%; /* Sembunyikan di luar layar */
+        width: 100%;
+        background: #ffffff;
         text-align: center;
-        gap: 30px;
+        padding: 20px 0;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        gap: 20px;
     }
 
-    .footer-logo img {
-        margin: 0 auto 15px; /* Tengahkan logo di HP */
-    }
-
-    .footer-logo p {
-        margin: 0 auto;
-    }
-
-    .contact-item {
-        justify-content: center; /* Tengahkan icon kontak di HP */
+    /* Class ini dipanggil JS saat tombol diklik */
+    nav ul.tampil {
+        left: 0; 
     }
 }
 </style>
@@ -767,7 +799,11 @@ footer {
     <img src="storage/images/logo.jpeg" alt="Logo">
 </a>
 
-<ul>
+<button class="hamburger" id="hamburger-btn">
+    <iconify-icon icon="mdi:menu"></iconify-icon>
+</button>
+
+<ul id="nav-menu">
 <li><a href="/" class="{{ request()->is('/') ? 'active' : '' }}">Beranda</a></li>
 <li><a href="/tentang" class="{{ request()->is('tentang') ? 'active' : '' }}">Tentang</a></li>
 <li><a href="/sewa-mobil" class="{{ request()->is('sewa-mobil*') ? 'active' : '' }}">Sewa Mobil</a></li>
@@ -1067,6 +1103,26 @@ Copyright &copy; 2026 Vorent Malang. All rights reserved.
 </div>
 
 </footer>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburgerBtn.addEventListener('click', function() {
+            // Toggle menu masuk/keluar layar
+            navMenu.classList.toggle('tampil');
+            
+            // Ubah ikon garis 3 jadi ikon X saat diklik
+            const icon = this.querySelector('iconify-icon');
+            if (icon.getAttribute('icon') === 'mdi:menu') {
+                icon.setAttribute('icon', 'mdi:close');
+            } else {
+                icon.setAttribute('icon', 'mdi:menu');
+            }
+        });
+    });
+</script>
 
 </body>
 </html>

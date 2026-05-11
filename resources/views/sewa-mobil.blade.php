@@ -21,6 +21,7 @@ body {
     color: #1f2937;
     line-height: 1.7;
     background: #fafcff;
+    overflow-x: hidden; /* MENCEGAH LAYAR BOCOR */
 }
 
 .container {
@@ -57,10 +58,20 @@ nav {
     object-fit: contain;
 }
 
+.hamburger {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 35px;
+    color: #1e56cd;
+    cursor: pointer;
+}
+
 nav ul {
     display: flex;
     gap: 30px;
     list-style: none;
+    transition: left 0.4s ease;
 }
 
 nav a {
@@ -633,22 +644,40 @@ footer {
 }
 
 /* ============================
-   RESPONSIVE (MOBILE)
+   RESPONSIVE (MOBILE) - FIXED
    ============================ */
-@media(max-width: 950px) {
-    nav ul { display: none; }
+@media(max-width: 900px) {
     .hero h1 { font-size: 40px; }
-    
     .catalog-grid,
     .tc-grid,
     .rules-grid,
     .footer-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr; /* Memaksa semua card jadi 1 kolom ke bawah */
     }
 
     .footer-grid { text-align: center; }
     .footer-logo img, .footer-logo p { margin-left: auto; margin-right: auto; }
     .contact-item { justify-content: center; }
+
+    /* Memunculkan Tombol Hamburger */
+    .hamburger { display: block; }
+
+    /* Navigasi Menu Mobile Meluncur dari Samping/Atas */
+    nav ul {
+        flex-direction: column;
+        position: absolute;
+        top: 85px; /* Tepat di bawah navbar putih */
+        left: -100%; /* Sembunyikan jauh di kiri layar */
+        width: 100%;
+        background: #ffffff;
+        text-align: center;
+        padding: 20px 0;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        gap: 20px;
+    }
+
+    /* Class ini dipanggil JS saat tombol diklik */
+    nav ul.tampil { left: 0; }
 }
 </style>
 </head>
@@ -660,7 +689,12 @@ footer {
         <a href="/" class="logo">
             <img src="storage/images/logo.jpeg" alt="Logo">
         </a>
-        <ul>
+
+        <button class="hamburger" id="hamburger-btn">
+            <iconify-icon icon="mdi:menu"></iconify-icon>
+        </button>
+
+        <ul id="nav-menu">
             <li><a href="/" class="{{ request()->is('/') ? 'active' : '' }}">Beranda</a></li>
             <li><a href="/tentang" class="{{ request()->is('tentang') ? 'active' : '' }}">Tentang</a></li>
             <li><a href="/sewa-mobil" class="active">Sewa Mobil</a></li>
@@ -689,11 +723,11 @@ footer {
             <p>Daftar armada pilihan yang tersedia dan siap disewa</p>
         </div>
 
-        <div class="filter-box">
+        <!-- <div class="filter-box">
             <h3>
                 <iconify-icon icon="mdi:check-decagram"></iconify-icon> Menampilkan {{ count($products) }} Armada Tersedia
             </h3>
-        </div>
+        </div> -->
 
         @if($products->count() > 0)
         <div class="catalog-grid">
@@ -926,6 +960,26 @@ Copyright &copy; 2026 Vorent Malang. All rights reserved.
 </div>
 
 </footer>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const navMenu = document.getElementById('nav-menu');
+
+        hamburgerBtn.addEventListener('click', function() {
+            // Toggle menu masuk/keluar layar
+            navMenu.classList.toggle('tampil');
+            
+            // Ubah ikon garis 3 jadi ikon X saat diklik
+            const icon = this.querySelector('iconify-icon');
+            if (icon.getAttribute('icon') === 'mdi:menu') {
+                icon.setAttribute('icon', 'mdi:close');
+            } else {
+                icon.setAttribute('icon', 'mdi:menu');
+            }
+        });
+    });
+</script>
 
 </body>
 </html>

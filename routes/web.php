@@ -8,6 +8,7 @@ use App\Http\Controllers\ProductController as FrontendProductController;
 
 // Import Controller untuk Admin (Backend)
 use App\Http\Controllers\Admin\ProductController as AdminProductController;
+use App\Http\Controllers\AuthController;
 
 
 /*
@@ -40,6 +41,17 @@ Route::get('/kontak', function () {
 
 Route::get('/sewa-mobil', [FrontendProductController::class, 'index']);
 
+/*
+|--------------------------------------------------------------------------
+| ROUTE LOGIN & LOGOUT
+|--------------------------------------------------------------------------
+*/
+// Halaman Login (Hanya bisa diakses kalau belum login / 'guest')
+Route::get('/login', [AuthController::class, 'index'])->name('login')->middleware('guest');
+// Proses mencocokkan email & password
+Route::post('/login', [AuthController::class, 'login'])->name('login.post');
+// Proses keluar
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 /*
 |--------------------------------------------------------------------------
@@ -47,12 +59,18 @@ Route::get('/sewa-mobil', [FrontendProductController::class, 'index']);
 |--------------------------------------------------------------------------
 */
 
-// Prefix 'admin' agar URL otomatis diawali dengan /admin/...
-Route::prefix('admin')->group(function () {
+    // Bungkus dengan middleware 'auth' agar wajib login
+    Route::middleware('auth')->prefix('admin')->group(function () {
 
-    // Route untuk menampilkan Dashboard Admin
+    // Route untuk menampilkan Dashboard Admin (Dengan Data Real-time)
     Route::get('/dashboard', function () {
-        return view('admin.dashboard');
+        // Menghitung jumlah mobil dari database
+        $totalArmada = \App\Models\Product::count(); 
+        $armadaTersedia = \App\Models\Product::where('status', 'tersedia')->count(); 
+        $armadaDisewa = \App\Models\Product::where('status', 'tidak tersedia')->count(); 
+
+        // Kirim datanya ke halaman dashboard
+        return view('admin.dashboard', compact('totalArmada', 'armadaTersedia', 'armadaDisewa'));
     })->name('dashboard');
 
     // Route Resource otomatis untuk CRUD Data Armada

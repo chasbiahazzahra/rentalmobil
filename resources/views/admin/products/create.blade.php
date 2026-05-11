@@ -54,11 +54,33 @@
 
         <div style="margin-bottom: 30px;">
             <label style="display: block; margin-bottom: 8px; font-weight: bold;">Upload Gambar Mobil *</label>
-            <input type="file" name="gambar" accept="image/*" required style="width: 100%; padding: 10px; border: 1px dashed #ccc; border-radius: 8px;">
+            <img id="preview-gambar" src="" alt="Preview" style="max-width: 200px; margin-bottom: 15px; border-radius: 8px; display: none; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+            <input type="file" name="gambar" id="input-gambar" accept="image/*" required style="width: 100%; padding: 10px; border: 1px dashed #ccc; border-radius: 8px;" onchange="previewImage()">
         </div>
 
         <button type="submit" class="btn btn-primary" style="width: 100%; padding: 15px; font-size: 16px;">Simpan Armada Baru</button>
     </form>
 </div>
+
+<script>
+    function previewImage() {
+        const input = document.getElementById('input-gambar');
+        const preview = document.getElementById('preview-gambar');
+
+        // Jika ada file yang dipilih
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            
+            reader.onload = function(e) {
+                preview.src = e.target.result; // Masukkan gambar ke dalam tag img
+                preview.style.display = 'block'; // Tampilkan gambarnya
+            }
+            
+            reader.readAsDataURL(input.files[0]);
+        } else {
+            preview.style.display = 'none'; // Sembunyikan jika dibatalkan
+        }
+    }
+</script>
 
 @endsection
