@@ -770,60 +770,6 @@ footer {
     </div>
 </section>
 
-<!-- TESTIMONI (PENGGANTI CTA) -->
-<section class="testi-section">
-    <div class="container">
-        <div class="sec-title">
-            <h2>Apa Kata Mereka?</h2>
-            <p>Pengalaman nyata dari pelanggan yang telah menggunakan layanan kami</p>
-        </div>
-
-        <div class="testi-grid">
-            <div class="testi-card">
-                <div class="testi-stars">
-                    <iconify-icon icon="mdi:star"></iconify-icon><iconify-icon icon="mdi:star"></iconify-icon><iconify-icon icon="mdi:star"></iconify-icon><iconify-icon icon="mdi:star"></iconify-icon><iconify-icon icon="mdi:star"></iconify-icon>
-                </div>
-                <p class="testi-text">"Sewa Innova Reborn di sini sangat memuaskan. Mobilnya bersih luar dalam, wangi, dan mesinnya halus. Liburan keluarga di Batu jadi sangat nyaman!"</p>
-                <div class="testi-user">
-                    <div class="testi-avatar">A</div>
-                    <div class="testi-name">
-                        <h5>Ahmad</h5>
-                        <span>Wisatawan Keluarga</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="testi-card">
-                <div class="testi-stars">
-                    <iconify-icon icon="mdi:star"></iconify-icon><iconify-icon icon="mdi:star"></iconify-icon><iconify-icon icon="mdi:star"></iconify-icon><iconify-icon icon="mdi:star"></iconify-icon><iconify-icon icon="mdi:star"></iconify-icon>
-                </div>
-                <p class="testi-text">"Pelayanan adminnya fast response dan ramah banget. Driver yang mengantar juga tepat waktu dan sangat paham rute Malang-Bromo. Sangat direkomendasikan!"</p>
-                <div class="testi-user">
-                    <div class="testi-avatar">B</div>
-                    <div class="testi-name">
-                        <h5>Budi Santoso</h5>
-                        <span>Perjalanan Bisnis</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="testi-card">
-                <div class="testi-stars">
-                    <iconify-icon icon="mdi:star"></iconify-icon><iconify-icon icon="mdi:star"></iconify-icon><iconify-icon icon="mdi:star"></iconify-icon><iconify-icon icon="mdi:star"></iconify-icon><iconify-icon icon="mdi:star-half-fill"></iconify-icon>
-                </div>
-                <p class="testi-text">"Harga sangat transparan, tidak ada biaya tambahan di akhir. Proses lepas kunci juga tidak berbelit-belit. Next time ke Malang pasti sewa di sini lagi."</p>
-                <div class="testi-user">
-                    <div class="testi-avatar">C</div>
-                    <div class="testi-name">
-                        <h5>Citra Kirana</h5>
-                        <span>Liburan Pribadi</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
 <!-- FOOTER -->
 <footer>
     <div class="container footer-grid">
